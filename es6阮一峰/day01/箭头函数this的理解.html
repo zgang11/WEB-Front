@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    const jelly = {
+        name: 'jelly',
+        hobbies: ['sleep', 'study', 'love'],
+        printHobbies: function() {
+            console.log(this)
+            this.hobbies.map((hobby) => {
+                console.log(`${this.name} love ${hobby}`)
+            })
+        }
+    }
+    jelly.printHobbies()
+    </script>
+</body>
+
+</html>

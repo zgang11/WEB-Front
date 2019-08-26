@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>promise简介</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+</head>
+<body>
+	<script>
+	  // let user
+	  //  $.get(`https://api.github.com/users/${user}/repos`,data=>{
+	  // 	console.log('fetch the repos')
+	  // 	console.log(data)
+	  // })
+	  // $.get('https://api.github.com/users',data=>{
+	  // 	console.log('fetch all users')
+	  // 	console.log(data)
+      //    user = data[0].login
+	  // })
+	  let userName	
+
+	  const userPromise = axios.get('https://api.github.com/users')
+	  userPromise.then(respose=>{
+	  	console.log(respose.data)
+	  	userName = respose.data[0].login
+	  	return axios.get(`https://api.github.com/users/${userName}/repos`)
+	  }).then(respose => {
+	  	console.log(respose.data)
+	  })
+	</script>
+</body>
+</html>

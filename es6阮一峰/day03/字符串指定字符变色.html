@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id='ad'>i konw what you say</div>
+	<script>
+		var oDiv = document.getElementById('ad')
+		var str = oDiv.innerHTML
+		var newStr = str.replace(/a/g,m => "<span style='color:red;'>"+ m +"</span>")
+        oDiv.innerHTML = newStr
+	</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var arr = ['flower','fruit','tree','grass','paper','well']
+		arr.many = 'ocean'
+		Array.prototype.say = function(){
+			console.log('111111')
+		}
+		// arr.forEach((item) =>{
+		// 	if(item=='tree'){
+		// 		break;
+		// 	}
+		// 	console.log(item)
+		// })
+        
+        // for(index in arr){
+        // 	// if(arr[index] == 'tree'){
+        // 	// 	break;
+        // 	// }
+        // 	console.log(arr[index])
+        // }
+
+
+
+        // for(item of arr){
+        // 	// if(item == 'tree'){
+        // 	// 	break
+        // 	// }
+        // 	console.log(item)
+        // }
+
+
+
+
+
+
+        ///////////////////////////////////  for of  ////////////////////////
+        for([index,dsc] of arr.entries()){
+        	console.log(`${index} is ${dsc}`)
+        }
+
+	</script>
+</body>
+</html>
