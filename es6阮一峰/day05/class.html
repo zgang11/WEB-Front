@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Class</title>
+</head>
+
+<body>
+    <script>
+        class User{
+            constructor(name,email){
+                this.name = name
+                this.email = email
+            }
+
+            info(){
+                console.log(`my name is ${this.name} and my email is ${this.email}`)
+            }
+
+            static Descriptiop(){
+                console.log(`if you were ugly you should never study too hard ${this.name} and ${this.email}`)
+            }
+
+            set github(value){
+                this.value = value
+            }
+            get github(){
+               return `https://www.github.com//${this.value}`
+            }
+        }
+
+        const Leris = new User('leris','393838@qq.com')
+        const Lora = new User('lora','909393@qq.com')
+        Leris.info()
+        User.Descriptiop()
+        Leris.github = 'jajajajaj'
+        console.log(Leris.github)
+    </script>
+</body>
+
+</html>

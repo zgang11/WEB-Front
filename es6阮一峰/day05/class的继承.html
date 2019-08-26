@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>class类的继承</title>
+</head>
+
+<body>
+    <script>
+        class Animal{
+            constructor(name,age){
+                this.name = name
+                this.age = age
+            }
+
+            eat(){
+                console.log(`Animal do need eat something`)
+            }
+        }
+        class Cat extends Animal{
+            constructor(name,color,age){
+                super(name,age)
+                this.color = color
+            }
+
+            brker(){
+                console.log(`${this.name} you are the barker${this.age} I am not barker!${this.color} `)
+            }
+        }
+
+        const Lili = new Cat('lili','yellow',233)
+        Lili.eat()
+        Lili.brker()
+    </script>
+</body>
+
+</html>
