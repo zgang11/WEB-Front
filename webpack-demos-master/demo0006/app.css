@@ -1,0 +1,6 @@
+.h1{
+   background: red;
+}
+:global(.h2){
+	background: yellow;
+}
