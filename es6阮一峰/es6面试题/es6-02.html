@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr =[]
+        for(var i = 0;i<10;i++){
+            arr[i] = function(){
+                console.log(i)
+            }
+        }
+        arr[5]()
+
+        //let
+        const arrLet = []
+        for(let i=0;i<10;i++){
+            arrLet[i] = function () {
+                console.log(i)
+              }
+        }
+        arrLet[5]()
+
+
+        //闭包形式
+        function showNum(i){
+            return function(){
+                console.log(i)
+            }
+        }
+
+        const a = []
+        for(var i= 0;i<10;i++){
+            a[i] = showNum(i)
+        }
+        a[6]()
+
+        //立即执行函数形式
+        const c = []
+        for(var i=0;i<10;i++){
+            c[i] = (function(i){
+                return function() {
+                    console.log(i)
+                }
+            })(i)
+        } 
+        c[7]()
+    </script>
+</body>
+
+</html>
