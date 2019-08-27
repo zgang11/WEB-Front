@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>扩展运算符的练习</title>
+    <style>
+        .title span{
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        .title span:hover {
+            color: red;
+            transform: translateY(-23px) rotate(-30deg) scale(2.4);
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="title">LAVIRIANF!</h1>
+    <script>
+        const title = document.querySelector('.title')
+        console.log(title.textContent)
+
+        function contextArray(value) {
+            return [...value].map(item => `<span>${item}</span>`)
+        }
+        const a = contextArray(title.textContent).join('')
+        title.innerHTML = a
+    </script>
+</body>
+
+</html>
