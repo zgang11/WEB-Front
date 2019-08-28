@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>扩展内建对象数组</title>
+</head>
+
+<body>
+    <script>
+        class moviesCollection extends Array{
+            constructor(name,...items){
+                super(...items)
+                this.name = name
+            }
+            add(movie){
+                this.push(movie)
+            }
+
+            topLimit(limit = 10){
+               return this.sort((a,b) => a.scores > b.scores ?-1:1).slice(0,limit)
+            }
+        }
+
+        const movies = new moviesCollection('favorite movies', {
+            name: '骗局之王',
+            scores: 3
+        }, {
+            name: '遇见未知的自己',
+            scores: 4
+        }, {
+            name: '致所有疯狂的家伙',
+            scores: 4
+        }, {
+            name: '麦当劳之父的创业冒险',
+            scores: 5
+        }, {
+            name: '一个狗娘养的自白',
+            scores: 2
+        }, {
+            name: '我的生活与工作',
+            scores: 8
+        }, {
+            name: '亿美元的起点',
+            scores: 4
+        })
+    </script>
+</body>
+
+</html>

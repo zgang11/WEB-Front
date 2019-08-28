@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>es6类的定义</title>
+</head>
+<body>
+    <script>
+        const User = class {
+             constructor(name,age){
+                 this.name = name
+                 this.age = age
+             }
+
+             info(){
+                 console.log(`my name is ${this.name} and i am ${this.age}`)
+             }
+            //静态方法只属于类，实例不可以调用
+             static description(){
+                 console.log(`i belong to User`)
+             }
+
+            //set和get方法的调用
+            set github(value){
+                this.gitname =value
+            }
+            get github(){
+                return `https://www.baidu.${this.gitname}`
+            }
+        }
+        const user1 = new User('lily',19)
+        const user2 = new User('sisi',18)
+    </script>
+</body>
+</html>

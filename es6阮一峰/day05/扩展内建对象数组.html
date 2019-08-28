@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>扩展内建对象数组</title>
+</head>
+<body>
+    <script>
+            //错误的写法
+            // function MyArray(){
+            //     Array.apply(this,arguments)
+            // }
+
+
+            //正确的写法
+            class MyArray extends Array{
+                constructor(){
+                    super()
+                }
+            }
+            const colors = new MyArray()
+            colors[0] = 'red'
+            console.log(colors.length)
+            colors.length = 0
+            console.log(colors[0])
+    </script>
+</body>
+</html>
