@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字符创模板实例</title>
+</head>
+
+<body>
+    <script>
+        const jelly = {
+            name: 'jelly',
+            date: '2015-3-4',
+            todos: [{
+                    name: 'go to school',
+                    complete: false
+                },
+                {
+                    name: 'watch movies',
+                    complete: true
+                },
+                {
+                    name: 'go to reading',
+                    complete: false
+                },
+            ]
+        }
+
+       function renderTodo(todos) {
+           return `<ul>${jelly.todos.map(todo=>`<li>${todo.name}  ${todo.complete?'@':'&'}</li>`).join('')}</ul>`
+        }
+
+
+        const template =`
+           <div>${jelly.name}</div>
+           ${renderTodo()}
+           <div>${jelly.date}</div>
+        `
+        document.body.innerHTML = template
+    </script>
+</body>
+
+</html>

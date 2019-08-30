@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深拷贝与浅拷贝</title>
+</head>
+
+<body>
+    <script>
+        //如果是数组，我们可以利用数组的一些方法比如：slice、concat 返回一个新数组的特性来实现拷贝。
+        var arr = ['old', 1, true, undefined]
+        var new_arr = arr.concat()
+        new_arr[0] = 'new'
+        //console.log(arr) // ["old", 1, true, null, undefined]
+        //console.log(new_arr) // ["new", 1, true, null, undefined]
+
+        //slice
+        var new_arr1 = arr.slice()
+        //console.log(new_arr1)
+
+        //如果嵌套了对象和数组
+        var  arr3 = [{old:'old'},['old']]
+        var arr3_new = arr3.concat()
+        arr3_new[0].old = 'new'
+        arr3_new[1][0] = 'new'
+        // console.log(arr3_new)
+        // console.log(arr3)
+
+        //以上可知数组的concat，slice都是浅拷贝
+        //数组的深拷贝，见下：
+        var arr4 = ['old', 1, true, ['old1', 'old2'], {old: 1}]
+        var arr4_new = JSON.parse(JSON.stringify(arr4))
+        arr4_new[3][0] = 'new1'
+        arr4_new[3][1] = 'new2'
+        arr4_new[4].old = 4
+        // console.log(arr4)
+        // console.log(arr4_new)
+
+
+        //以上数组的深拷贝属于技巧类，但是不能拷贝函数。例子见下：
+        var arr5 = [function(){
+            console.log('1')
+        },{b:function(){
+            console.log('2')
+        }}]
+        var arr5_new = JSON.parse(JSON.stringify(arr5))
+       // console.log(arr5_new)//[null,'']
+        
+
+        //浅拷贝
+        var shadowCopy = (obj)=>{
+            if(typeof(obj) !== 'object') return
+            let new_obj = obj instanceof Array ? [] :{}
+            for(let key in obj){
+               new_obj[key] = obj[key] 
+            }
+            return new_obj
+        }
+        //深拷贝
+        var deepCopy = (obj) =>{
+            if(typeof(obj) !== 'object') return
+            let new_obj = obj instanceof Array ? [] : {}
+            for(let key in obj){
+                new_obj[key] = typeof(obj[key]) === 'object' ? deepCopy(obj[key]) : obj[key]
+            }
+            return new_obj
+        }
+
+        var obj = [{name:'old'},['old']]
+       // var obj_shadowCopy = shadowCopy(obj)
+        // obj_shadowCopy[0].name = 'new'
+        // obj_shadowCopy[1][0] = 'new'
+
+
+        var obj_deepCopy = deepCopy(obj)
+        obj_deepCopy[0].name = 'new'
+        obj_deepCopy[1][0] = 'new'
+    </script>
+</body>
+
+</html>
