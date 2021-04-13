@@ -7,13 +7,9 @@ import LikeButton from './myTest/state.js'
 import LikeButtonProp from './myTest/props'
 import Student from './higher_Com/higherCom'
 import Hello from './life_circle/life_circle'
-import Circle from './react-life-function/1'
-
-
-/**
- * react-link:
- * --https://juejin.cn/post/6844903842430074893
- */
+import CircleOld from './react-life-function/1'
+import CircleNew from './react-life-function/2'
+// import CircleEror from './react-life-function/3'
 
 
 class Header extends Component {
@@ -57,7 +53,7 @@ class HelloWorld extends Component{
 
 ReactDOM.render(
   <div>
-    <Circle></Circle>,
+    <CircleNew></CircleNew>,
   </div>,
   document.getElementById('root')
 );
