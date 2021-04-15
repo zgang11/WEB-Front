@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator 函数的语法</title>
+</head>
+<body>
+    <script>
+        function *helleWorldGenerator(){
+            console.log('before Hello')
+            yield 'hello'
+            console.log('after Hello')
+            console.log('before World')
+            yield 'world'
+            console.log('after World')
+            return 'coding'
+        }
+        var hw = helleWorldGenerator()
+
+       //Generator函数，yield和return语句的区别
+       function *f(){
+           console.log('执行了')
+       }
+
+       var generrator = f()
+       
+       setTimeout(function(){
+         generrator.next()
+       },2000)
+    </script>
+</body>
+</html>
