@@ -11,6 +11,8 @@ import CircleOld from './react-life-function/1'
 import CircleNew from './react-life-function/2'
 // import CircleEror from './react-life-function/3'
 
+import ReactApi from './REACT-API/com-api'
+
 
 class Header extends Component {
   render(){
@@ -53,7 +55,7 @@ class HelloWorld extends Component{
 
 ReactDOM.render(
   <div>
-    <CircleNew></CircleNew>,
+    <ReactApi></ReactApi>,
   </div>,
   document.getElementById('root')
 );
