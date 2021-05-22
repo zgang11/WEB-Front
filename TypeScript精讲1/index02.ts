@@ -1,3 +1,6 @@
+/**
+ * 函数定义
+ */
 function fun(s:string):string{
     return s
 }
@@ -14,3 +17,6 @@ interface Fun {
 let fun2:Fun = function(a,b,c){
     return a+b+c
 }
+
+
+
