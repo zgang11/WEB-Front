@@ -55,7 +55,7 @@ class HelloWorld extends Component{
 
 ReactDOM.render(
   <div>
-    <ReactApi></ReactApi>,
+    <ReactApi></ReactApi>
   </div>,
   document.getElementById('root')
 );
