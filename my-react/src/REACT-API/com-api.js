@@ -11,6 +11,7 @@ import DemoUseRef from './React-hooks/useRef'
 import {DemoEffect01, DemoEffect} from './React-hooks/useEffect'
 import DemoUseCallback from './React-hooks/useCallBack'
 import DemoUseLayoutEffect from './React-hooks/useLayoutEffect'
+import DemoUseContext  from './React-hooks/useContext'
 
 class ReactApi extends Component{
     render(){
@@ -39,7 +40,8 @@ class ReactApi extends Component{
                 {/* <DemoUseCallback id={1}/>
                 <br/>
                 <DemoUseRef/> */}
-                <DemoUseLayoutEffect/>
+                {/* <DemoUseLayoutEffect/> */}
+                <DemoUseContext/>
             </StrictMode>    
         )
     }
