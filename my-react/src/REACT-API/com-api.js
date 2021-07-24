@@ -17,31 +17,22 @@ class ReactApi extends Component{
     render(){
         return (
             <StrictMode>
-                {/* <MemoIndex/> 
-                <StrictModes/>
-                <br/>
-                <br/>
-                <br/>
-                <Index/>
-                <br/>
-                <br/>
-                <br/>
-                <Fragment/>
-                <br/>
-                <Lasy/>
-                <br/>
                 <UseStateDemo/>
+                <DemoUseRef/>
+                <DemoUseLayoutEffect/>
+                {/* <MemoIndex/>  */}
+                {/* <StrictModes/> */}
+                {/* <Index/> */}
+                {/* <Fragment/> */}
+                {/* <Lasy/> */}
+                {/* <DemoEffect01/> */}
                 <br/>
-                <DemoEffect01/>
+                {/* <DemoEffect/> */}
                 <br/>
-                <DemoEffect/>
                 <br/>
-                <br/> */}
-                {/* <DemoUseCallback id={1}/>
+                {/* <DemoUseCallback id={1}/> */}
                 <br/>
-                <DemoUseRef/> */}
-                {/* <DemoUseLayoutEffect/> */}
-                <DemoUseContext/>
+                {/* <DemoUseContext/> */}
             </StrictMode>    
         )
     }
