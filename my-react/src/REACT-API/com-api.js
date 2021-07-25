@@ -7,7 +7,7 @@ import Lasy from './Component/Lasy'
 
 //react-hooker
 import UseStateDemo from './React-hooks/useState'
-import DemoUseRef from './React-hooks/useRef'
+import {DemoUseRef, App, Parent,ForwardRef} from './React-hooks/useRef'
 import {DemoEffect01, DemoEffect} from './React-hooks/useEffect'
 import DemoUseCallback from './React-hooks/useCallBack'
 import DemoUseLayoutEffect from './React-hooks/useLayoutEffect'
@@ -37,9 +37,14 @@ class ReactApi extends Component{
                 <br/>
                 <br/> */}
                 {/* <DemoUseCallback id={1}/>
+                <br/>*/}
+                {/* <DemoUseRef/> */}
+                <ForwardRef/>
                 <br/>
-                <DemoUseRef/> */}
-                <DemoUseLayoutEffect/>
+                {/* <App/> */}
+                <br/>
+                {/* <Parent/> */}
+                {/* <DemoUseLayoutEffect/> */}
             </StrictMode>    
         )
     }
