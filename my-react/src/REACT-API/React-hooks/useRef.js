@@ -43,7 +43,6 @@ const DemoUseRef = ()=>{
 
 let Child = (props) => {
     const {ref} = props
-    debugger
     return (
         <Input ref={ref}/>
     )
