@@ -11,30 +11,27 @@ import {DemoUseRef, App, Parent,ForwardRef} from './React-hooks/useRef'
 import {DemoEffect01, DemoEffect} from './React-hooks/useEffect'
 import DemoUseCallback from './React-hooks/useCallBack'
 import DemoUseLayoutEffect from './React-hooks/useLayoutEffect'
+import DemoUseContext  from './React-hooks/useContext&React.createContext/index.js'
 
 class ReactApi extends Component{
     render(){
         return (
             <StrictMode>
-                {/* <MemoIndex/> 
-                <StrictModes/>
-                <br/>
-                <br/>
-                <br/>
-                <Index/>
-                <br/>
-                <br/>
-                <br/>
-                <Fragment/>
-                <br/>
-                <Lasy/>
-                <br/>
                 <UseStateDemo/>
+                <DemoUseRef/>
+                <DemoUseLayoutEffect/>
+                <DemoUseContext/>
+                {/* <MemoIndex/>  */}
+                {/* <StrictModes/> */}
+                {/* <Index/> */}
+                {/* <Fragment/> */}
+                {/* <Lasy/> */}
+                {/* <DemoEffect01/> */}
                 <br/>
-                <DemoEffect01/>
+                {/* <DemoEffect/> */}
                 <br/>
-                <DemoEffect/>
                 <br/>
+<<<<<<< HEAD
                 <br/> */}
                 {/* <DemoUseCallback id={1}/>
                 <br/>*/}
@@ -45,6 +42,10 @@ class ReactApi extends Component{
                 <br/>
                 {/* <Parent/> */}
                 {/* <DemoUseLayoutEffect/> */}
+=======
+                {/* <DemoUseCallback id={1}/> */}
+                <br/>
+>>>>>>> 24d8c60a5ff0c8f05dcb997fedd8176aa1ec8bd4
             </StrictMode>    
         )
     }
