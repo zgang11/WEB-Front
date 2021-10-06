@@ -1,7 +1,7 @@
-import './App.css';
 import { HashRouter as Router, Route, Switch} from 'react-router-dom'
 import ReactLearning from './pages/react/index'
 import VueLearning from './pages/vue/index'
+import React from 'react'
 
 
 function App() {
