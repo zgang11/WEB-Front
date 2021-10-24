@@ -1,7 +1,20 @@
+// 链接：https://mp.weixin.qq.com/s/pwynolH0pTtT38f-xBUsXw   Webpack5 之路（优化篇）
 const webpack = require('webpack')
 const path = require('path')
 const htmlWebpackPlugin = require('html-webpack-plugin')
+// 编译进度条
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const chalk = require('chalk')
+// 编译速度分析
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
+// 打包体积分析
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+// 热更新
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
+/**  四、减小打包体积  */
+const TerserPlugin = require('terser-webpack-plugin')
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const config = {
     context: path.resolve(__dirname, '../'),
@@ -13,6 +26,25 @@ const config = {
         new htmlWebpackPlugin({
             template: './src/index.ejs',
             filename: 'index.html'
+        }),
+        new ProgressBarPlugin({
+            format: `  :msg [:bar] ${chalk.green.bold(':percent')} (:elapsed s)`
+        }),
+        new SpeedMeasurePlugin(),
+        // new BundleAnalyzerPlugin(),
+        new ReactRefreshWebpackPlugin(),
+        new webpack.optimize.SplitChunksPlugin({
+            chunks: 'all',
+            // 重复打包问题
+            cacheGroups: {
+                vendors: { // node_modules里的代码
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: "all",
+                    // name: 'vendors', 一定不要定义固定的name
+                    priority: 10, // 优先级
+                    enforce: true
+                }
+            }
         })
     ],
     module: {
@@ -66,6 +98,33 @@ const config = {
         alias: {
             '@': path.resolve(__dirname, '../src')
         }
+    },
+    optimization: {
+        minimizer: [new TerserPlugin({
+            parallel: 4,
+            terserOptions: {
+                parse: {
+                    ecma: 8,
+                },
+                compress: {
+                    ecma: 5,
+                    warnings: false,
+                    comparisons: false,
+                    inline: 2,
+                },
+                mangle: {
+                    safari10: true,
+                },
+                output: {
+                    ecma: 5,
+                    comments: false,
+                    ascii_only: true,
+                },
+            },
+
+        }), new CssMinimizerPlugin({
+            parallel: 4
+        })]
     }
 }
 
