@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import "antd/dist/antd.css";
+import {ConfigProvider} from 'antd'
 
 ReactDOM.render(
-  <div>
+  <ConfigProvider>
     <App></App>
-  </div>,
+  </ConfigProvider>,
   document.getElementById('root')
 );
 
