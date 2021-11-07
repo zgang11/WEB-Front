@@ -12,7 +12,7 @@ export default {
               name: 'react面试',
               icon: <DesktopOutlined />,
               component: Loadable({
-                loader: () => import('./pages/react/index'),
+                loader: () => import('./react/index'),
                 loading: Loading,
               }),
           }
