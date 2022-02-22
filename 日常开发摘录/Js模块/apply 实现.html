@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解析 call/apply 原理，并手写 call/apply 实现</title>
+</head>
+<body>
+    <script>
+        Function.prototype.apply_ = function(context, arg){
+            context = !context ? window : Object(context)
+            context.fn = this
+
+            let result 
+            if(arg){
+                result = context.fn(...arg)
+            }else {
+                result = context.fn()
+            }
+
+            delete context.fn
+            return result
+        }
+
+        function say(){
+            console.log(this.name + this.age)
+        }
+        const obj = {name: '张三', age: 34}
+        say.apply_(obj, {name: '张三', age: 34})
+    </script>
+</body>
+</html>
