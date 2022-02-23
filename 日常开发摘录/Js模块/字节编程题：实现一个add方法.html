@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字节编程题：实现一个add方法</title>
+</head>
+
+<body>
+  <script>
+    function add() {
+      let args = [].slice.call(arguments)
+      let self = this
+      this.num = args
+
+      function add_() {
+        let args_ = [].slice.call(arguments)
+        self.num.push(...args_)
+        return add_
+      }
+      add_.value = () => {
+          return self.num.reduce((acc, cur) => acc += cur, 0)
+        }
+      return add_
+    }
+    const result = add(1)(2, 3)(4).value()
+    console.log(result)
+
+  </script>
+</body>
+
+</html>

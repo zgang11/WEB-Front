@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const name = 'window'
+    const test = {
+      name: 'bill',
+      show1: function () {
+        console.log(this.name) //bill
+      },
+      show2: () => {
+        console.log(this.name) //undefined 箭头函数没有this
+      },
+      show3: () => {
+        function inner() {
+          console.log(this.name) //undefined 1、不是闭包：因为并未返回匿名函数 2 this指向show3
+        }
+        inner()
+      },
+      show4: function () {
+        return function () {
+          return this.name //window 此处是闭包，this指向window
+        }
+      },
+    }
+    test.show1()
+    test.show2()
+    test.show3()
+    const a = test.show4()()
+    // console.log(a)
+
+  </script>
+</body>
+
+</html>
