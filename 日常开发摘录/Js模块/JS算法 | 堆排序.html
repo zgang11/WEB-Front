@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS算法 | 堆排序</title>
+  <link rel="stylesheet" href="https://juejin.cn/post/6932718585173753869">
+</head>
+
+<body>
+  <script>
+    /**
+     *  此代码建议 mock 数据，并将其绘制成完美二叉树，参照二叉树进行阅读
+     */
+    function buildHeap(data) {
+      let len = data.length
+      // 从最后一个根节点开始，向前遍历所有根节点
+      // 取 len / 2 作为 i 的初始值，是因为最后一个孩子节点是 len - 1
+      // 它可能是左孩子也可能是右孩子，那么可以根据公式算出对应的根节点
+      // 它一定在 len / 2 附近，且小于 len / 2
+      for (let i = Math.floor(len / 2); i >= 0; i--) {
+        heapAjust(data, i, len);
+      }
+    }
+
+    /**
+     * 调整操作
+     * 根据传入的数据调整二叉树
+     * i 为根节点的 key
+     * len 为需调整数据的长度
+     */
+    function heapAjust(data, i, len) {
+      // 寻找 i 的左孩子
+      let child = 2 * i + 1
+      // 如果 child 大于 len 说明 i 不是根节点
+      while (child < len) {
+        // 比较两个孩子节点，将 child 指向大的那个
+        if (child + 1 <= len && data[child] < data[child + 1]) {
+          child = child + 1
+        }
+        // 如果孩子节点比根节点大，两个节点互换
+        if (data[i] < data[child]) {
+          let temp = data[i]
+          data[i] = data[child]
+          data[child] = temp
+          // 互换之后将被更新的孩子节点继续作为根节点，进行深度查找
+          i = child
+          child = 2 * i + 1
+        } else {
+          break
+        }
+      }
+    }
+
+    var arraySort = function (arr) {
+      // 将数组调整成大根堆
+      buildHeap(arr);
+      // 下面需要注意的时候参数的边界
+      for (let i = arr.length - 1; i >= 0; i--) {
+        // 互换数据
+        let temp = arr[i]
+        arr[i] = arr[0]
+        arr[0] = temp
+        // 将前面的元素重新调整成大根堆
+        heapAjust(arr, 0, i - 1);
+      }
+      return arr
+    }
+    
+
+    console.log(arraySort([5,8,3,5,2,99,22,44]))
+  </script>
+</body>
+
+</html>
