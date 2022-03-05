@@ -20,6 +20,187 @@
 
 <body>
   <div class="triangle"></div>
+  <script>
+    import { Component } from 'react';
+import styles from './index.less';
+import range from './rangeFn.js';
+import { Upload, Icon } from 'antd';
+
+class Editor extends Component {
+  insertContent(val) {
+    let value = this.editorRef.value;
+    let point = range.getCursortPosition(this.editorRef);
+    let lastChart = value.substring(point - 1, point);
+    let lastFourCharts = value.substring(point - 4, point);
+    if (lastChart != '\n' && value != '' && lastFourCharts != '    ') {
+      val = '\n' + val;
+      range.insertAfterText(this.editorRef, val);
+    } else {
+      range.insertAfterText(this.editorRef, val);
+    }
+    // 对比 editor/index 增加插入内容后主动触发变化
+    this.change(this.editorRef.value);
+  }
+  change(val) {
+    const { onChange } = this.props;
+    if (onChange) {
+      onChange(val);
+    }
+  }
+  onKeyDown = evt => {
+    if (evt.keyCode === 9) {
+      evt.preventDefault();
+    }
+  }
+  addHTitle = index => {
+    let tmp = '';
+    switch (index) {
+      case 1:
+        tmp = '# ';
+        break;
+      case 2:
+        tmp = '## ';
+        break;
+      case 3:
+        tmp = '### ';
+        break;
+      case 4:
+        tmp = '#### ';
+        break;
+      case 5:
+        tmp = '##### ';
+        break;
+      case 6:
+        tmp = '###### ';
+        break;
+      default:
+        break;
+    }
+    this.insertContent(tmp);
+  }
+  addCode = () => {
+    let textareaDom = this.editorRef;
+    let value = textareaDom.value;
+    let point = range.getCursortPosition(textareaDom);
+    let lastChart = value.substring(point - 1, point);
+    this.insertContent('```\n\n```');
+    if (lastChart != '\n' && value != '') {
+      range.setCaretPosition(textareaDom, point + 5);
+    } else {
+      range.setCaretPosition(textareaDom, point + 4);
+    }
+  }
+  addStrong = () => {
+    let value = this.editorRef.value;
+    let point = range.getCursortPosition(this.editorRef);
+    let lastChart = value.substring(point - 1, point);
+    this.insertContent('****');
+    if (lastChart != '\n' && value != '') {
+      range.setCaretPosition(this.editorRef, point + 3);
+    } else {
+      range.setCaretPosition(this.editorRef, point + 2);
+    }
+  }
+  addItalic = ()=> {
+    let textareaDom = this.editorRef;
+    let value = textareaDom.value;
+    let point = range.getCursortPosition(textareaDom);
+    let lastChart = value.substring(point - 1, point);
+    this.insertContent('**');
+    if (lastChart != '\n' && value != '') {
+      range.setCaretPosition(textareaDom, point + 2);
+    } else {
+      range.setCaretPosition(textareaDom, point + 1);
+    }
+  }
+  addLine = () => {
+    this.insertContent('\n----\n');
+  }
+  addLink = () => {
+    this.insertContent("[jd](https://cf.jd.com/)");
+  }
+  addTable = () => {
+    this.insertContent('\nheader 1 | header 2\n');
+    this.insertContent('---|---\n');
+    this.insertContent('row 1 col 1 | row 1 col 2\n');
+    this.insertContent('row 2 col 1 | row 2 col 2\n\n');
+  }
+  addUl = () => {
+    this.insertContent('* ');
+  }
+  addOl = () => {
+    this.insertContent('1. ');
+  }
+  beforeUpload() {
+
+  }
+  handleUpload(info) {
+    if (info.file.status === 'uploading') {
+      // this.setState({ loading: true });
+      return;
+    }
+    if (info.file.status === 'done') {
+      // Get this url from response in real world.
+      const { msg } = info.file.response.data;
+      const url = "http://img20.360buyimg.com/uba/" + msg;
+      // this.insertContent("![Vue](https://cn.vuejs.org/images/logo.png)");
+      this.insertContent(`![jd](${url})`);
+      // this.setState({ loading: false });
+      //不会调用textarea change  自动触发一下
+      this.change(this.editorRef.value);
+    }
+  }
+  render() {
+    const { value } = this.props;
+    let action = window.APIGATEWAY + "/api/file/fileUpload";
+    return (
+      <div className={styles.mdContainer}>
+        <div className={styles.navContainer}>
+        <div className={styles.markContainer}>
+        <ul className={styles.markListGroup}>
+          <li className={styles.markListItem} onClick={this.addStrong} title="strong"><b>B</b></li>
+          <li className={styles.markListItem} onClick={this.addItalic}  title="italic"><i>I</i></li>
+          <li className={styles.markListItem} onClick={() => this.addHTitle(1)} title="H1-title">H1</li>
+          <li className={styles.markListItem} onClick={() => this.addHTitle(2)} title="H2-title">H2</li>
+          <li className={styles.markListItem} onClick={() => this.addHTitle(3)} title="H3-title">H3</li>
+          <li className={styles.markListItem} onClick={() => this.addHTitle(4)} title="H4-title">H4</li>
+          <li className={styles.markListItem} onClick={() => this.addHTitle(5)} title="H5-title">H5</li>
+          <li className={styles.markListItem} onClick={() => this.addHTitle(6)} title="H6-title">H6</li>
+          <li className={styles.markListItem} onClick={this.addLine} title="line">一</li>
+          <li className={styles.markListItem} onClick={this.addCode}><Icon type="code" theme="outlined" /></li>
+          <li className={styles.markListItem} onClick={this.addLink}><Icon type="link" theme="outlined" /></li>
+          <li className={styles.markListItem}>
+          <Upload
+            name="file"
+            listType="picture-card"
+            withCredentials
+            className={styles.upload}
+            showUploadList={false}
+            action={action}
+            accept="image/*"
+            beforeUpload={this.beforeUpload}
+            onChange={info => this.handleUpload(info)}
+          >
+            <Icon type="picture" theme="outlined" />
+          </Upload>
+          </li>
+          <li className={styles.markListItem} onClick={this.addTable} title="table"><Icon type="table" theme="outlined" /></li>
+          <li className={styles.markListItem} onClick={this.addUl} title="ul-list"><Icon type="bars" theme="outlined" /></li>
+          <li className={styles.markListItem} onClick={this.addOl} title="ol-list"><Icon type="ordered-list" theme="outlined" /></li>
+      </ul>
+        </div>
+        </div>
+        <div className={styles.editContainer}>
+          <textarea onKeyDown={this.onKeyDown} value={value||""} ref={ele=>this.editorRef = ele} onChange={evt => this.change(evt.target.value)} className={styles.mdEditor} />
+        </div>
+    </div>
+    );
+  }
+}
+
+export default Editor;
+
+  </script>
 </body>
 
 </html>

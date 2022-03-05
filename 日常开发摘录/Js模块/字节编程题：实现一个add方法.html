@@ -10,21 +10,38 @@
 
 <body>
   <script>
-    function add() {
-      let args = [].slice.call(arguments)
-      let self = this
-      this.num = args
+    // function add() {
+    //   let args = [].slice.call(arguments)
+    //   let self = this
+    //   this.num = args
 
-      function add_() {
-        let args_ = [].slice.call(arguments)
-        self.num.push(...args_)
-        return add_
-      }
-      add_.value = () => {
-          return self.num.reduce((acc, cur) => acc += cur, 0)
+    //   function add_() {
+    //     let args_ = [].slice.call(arguments)
+    //     self.num.push(...args_)
+    //     return add_
+    //   }
+    //   add_.value = () => {
+    //       return self.num.reduce((acc, cur) => acc += cur, 0)
+    //     }
+    //   return add_
+    // }
+
+
+    function add() {
+        const arr = [].slice.apply(arguments)
+        function add_(){
+            arr.push(...arguments)
+            return add_
         }
-      return add_
+        add_.value = function(){
+          return  arr.reduce((acc, cur) => {
+            return acc + cur
+          })
+        }
+
+        return add_
     }
+
     const result = add(1)(2, 3)(4).value()
     console.log(result)
 

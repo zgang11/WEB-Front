@@ -33,38 +33,54 @@
       body: document.body,
       others: [123, 'coding', new Date(), /abc/gim, ]
     };
-    const deepCopy = (obj) => {
-      if (typeof obj !== 'object') return obj 
+    // const deepCopy = (obj) => {
+    //   if (typeof obj !== 'object') return obj 
+    //   let newObj = obj instanceof Array ? [] : {}
+    //   for (let key in obj) {
+    //     if (obj[key] instanceof Date) {
+    //       newObj[key] = new Date(obj[key].getTime())
+    //     } else if (obj[key] instanceof RegExp) {
+    //       newObj[key] = new RegExp(obj[key])
+    //     } else if (typeof obj[key] === 'object' && obj[key].nodeType === 1) {
+    //       let newNode = document.getElementsByTagName(obj[key].nodeName)[0]
+    //       newObj[key] = newNode.cloneNode(true)
+    //     } else {
+    //       newObj[key] = typeof obj[key] === "object" ? deepCopy(obj[key]) : obj[key]
+    //     }
+    //   }
+    //   return newObj
+    // }
 
+    const deepCopy = (obj) => {
+      if(typeof obj !== 'object') return obj
       let newObj = obj instanceof Array ? [] : {}
-      for (let key in obj) {
-        if (obj[key] instanceof Date) {
+      for(let key in obj){
+        if(obj[key] instanceof Date){
           newObj[key] = new Date(obj[key].getTime())
-        } else if (obj[key] instanceof RegExp) {
+        }else if(obj[key] instanceof RegExp){
           newObj[key] = new RegExp(obj[key])
-        } else if (typeof obj[key] === 'object' && obj[key].nodeType === 1) {
+        }else if(typeof obj[key] === 'object' && obj[key].nodeType === 1){
           let newNode = document.getElementsByTagName(obj[key].nodeName)[0]
-          newObj[key] = newNode.cloneNode(true)
-        } else {
-          newObj[key] = typeof obj[key] === "object" ? deepCopy(obj[key]) : obj[key]
+          newObj[key] = newNode
+        }else {
+          newObj[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key]
         }
       }
       return newObj
     }
 
-    console.log("objA:", deepCopy('aa'))
-
+    console.log("objA:", deepCopy(objA))
 
 
     // 浅拷贝
     // 方式一
+    // const shadowCopy = (obj) => {
     const shadowCopy = (obj) => {
-      if(typeof obj !== 'object') return obj
-      const newObj = {}
-      for(let key in obj){
+       let newObj = {}
+       for(let key in obj){
          newObj[key] = obj[key]
-      }
-      return newObj
+       }
+       return newObj
     }
     // 方式二
     Object.assign({}, {a: {a: 3}, b: {c: 3}})
