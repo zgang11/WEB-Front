@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // // 实现一个promise
+    // const PENDING = "pending"
+    // const RESOLVE = "resolve"
+    // const REJECTED = "reject"
+
+    // function MyPromise(fn) {
+    //   let this_ = this
+    //   this_.status = PENDING
+    //   this.value = null
+
+
+    //   this_.resolve = function (value) {
+    //     if (value instanceof MyPromise) {
+    //       value.then(res => MyPromise.resolve(res))
+    //     }
+    //     setTimeout(() => {
+    //       if (this.status === PENDING) {
+    //         this.status = RESOLVE
+    //         this.value = value
+    //       }
+    //     }, 0)
+
+    //   }
+
+    //   this_.reject = function (value) {
+    //     setTimeout(() => {
+    //       if (this.status === PENDING) {
+    //         this_.status = REJECTED
+    //         this_.value = value
+    //       }
+    //     }, 0);
+    //   }
+    //   try {
+    //     fn(this._resolve, this_.reject)
+    //   } catch (e) {
+    //     this_.reject(e)
+    //   }
+    // }
+
+    // MyPromise.prototype.all = function (arr) {
+    //   let args = Array.prototype.slice.call(arr)
+    //   return new MyPromise((resolve, reject) => {
+    //     if (!args.length) resolve([])
+    //     let remaining = args.length
+    //     for (let i = 0; i < args.length; i++) {
+    //       res[arr[i], i]
+    //     }
+    //   })
+
+    //   function res(val, i) {
+
+    //   }
+    // }
+
+
+    // const promise = new MyPromise((resolve, reject) => {
+    //   console.log('aaa')
+    // })
+
+
+    // 实现一个generator
+    // function $Gen(context_) {
+    //   while (1) {
+    //     switch (context_.prev = context_.next) {
+    //       case 0:
+    //         context_.next = 2
+    //         return 'result'
+    //       case 2:
+    //         context_.next = 6
+    //         return 'result2'
+    //       case 6:
+    //         return context_.setDone()
+    //     }
+    //   }
+    // }
+
+
+    // const context = {
+    //   next: 0,
+    //   prev: 0,
+    //   done: false,
+    //   setDone: function () {
+    //     this.done = true
+    //   },
+
+    // }
+
+    // function Gen() {
+    //   return {
+    //     next: function () {
+    //       let value = context.value ? undefined : $Gen(context)
+    //       let done = context.done
+    //       return {
+    //         value,
+    //         done
+    //       }
+    //     }
+    //   }
+    // }
+
+
+    // let gen = Gen()
+
+
+    // 实现await/async
+    // function *Gen(){
+    //   yield setTimeout(() => { }, 10000)
+    //   yield 'result'
+    // }
+    // let gen = Gen()
+
+
+    // 点击按钮，就执行一次函数，申请一块内存
+    startBtn.addEventListener("click", function () {
+      var a = new Array(100000).fill(1);
+      var b = new Array(20000).fill(1);
+    });
+
+  </script>
+</body>
+
+</html>

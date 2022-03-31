@@ -27,21 +27,35 @@
     // }
 
 
-    function add() {
-        const arr = [].slice.apply(arguments)
-        function add_(){
-            arr.push(...arguments)
-            return add_
-        }
-        add_.value = function(){
-          return  arr.reduce((acc, cur) => {
-            return acc + cur
-          })
-        }
+    // function add() {
+    //     const arr = [].slice.apply(arguments)
+    //     function add_(){
+    //         arr.push(...arguments)
+    //         return add_
+    //     }
+    //     add_.value = function(){
+    //       return  arr.reduce((acc, cur) => {
+    //         return acc + cur
+    //       })
+    //     }
 
-        return add_
+    //     return add_
+    // }
+    function add(){
+      let args = Array.prototype.slice(arguments)
+      function _add(){
+        args.push(...arguments)
+        
+        return _add
+      }
+
+      _add.value = function(){
+          return  args.reduce((acc, cur) => acc + cur)
+        }
+      return _add
     }
 
+    
     const result = add(1)(2, 3)(4).value()
     console.log(result)
 

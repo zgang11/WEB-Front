@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组去重</title>
+</head>
+
+<body>
+  <script>
+    // const arr = [23, 23, 323, [23, 32, 2, 2, 432, [23, 3]]]
+    //     const flat_ = (arr, depth) => {
+    //      return depth > 0 ?
+    //            arr.reduce((acc, cur) => {
+    //             return  Array.isArray(cur) ? [...acc, ...flat_(cur)] : [...acc, cur]
+    //            }, [])
+    //         : arr
+    //     }
+
+    //    console.log( flat_(arr, 2))
+
+
+    //    const removeDum = (arr) => {
+    //       return  [...new Set(arr)]
+    //    }
+    //    console.log(removeDum(arr))
+
+    const arr = [23, 23, 323, 23, 32, 2, 2, 432, 23, 3]
+    // const removeDuplicate = (arr) => {
+    //     arr.sort((a, b) => a - b)
+    //     console.log(arr)
+    //     for(let i = 0; i < arr.length; i++){
+    //         for(let j = i + 1; j < arr.length; j++){
+    //             if(arr[i] === arr[j]){
+    //                 arr.splice(j, 1)
+    //                 j--
+    //             }
+    //         }
+    //     }
+    //     return arr
+    // }
+    // console.log(removeDuplicate(arr))
+
+    // const removeDuplicate = (arr) => {
+    //     arr.sort((a, b) => a - b)
+    //     console.log(arr)
+    //     let len = 1
+    //     for(let i = 1; i < arr.length; i++){
+    //         if(arr[i] !== arr[i - 1]){
+    //             arr[len++] = arr[i]
+    //         }
+    //     }
+    //       arr.splice(len)
+    //       return arr
+    // }
+
+    // console.log(removeDuplicate(arr))
+
+    // function  add(){
+    //     let arg1 = [].slice.call(arguments)
+
+    //     function add_(){
+    //         let arg2 = [].slice.call(arguments)
+    //         arg1 = [...arg1, ...arg2]
+    //         return add_
+    //     }
+
+    //     add_.toString = function(){
+    //         return  arg1.reduce((acc, cur) => {
+    //             return acc + cur
+    //         })
+    //     }
+
+    //    return add_
+    // }
+
+    // console.log(add(1)(2,3).toString())
+
+    // const arr1 = [1, 2, 3, 4, 7, 7, 7, 9, 12, 23, 34, 45, 55]
+
+    // function findIndex_ (arr, target){
+    //     let left = 0, right = arr.length -1
+    //     while(left <= right){
+    //         let mid = Math.floor((left + right) / 2)
+    //         if(arr[mid] === target){
+    //             while(mid > 1 && arr[mid] === arr[mid - 1]){
+    //                 mid = mid - 1
+    //             }
+    //             return mid
+    //         }else if(arr[mid] > target){
+    //             right = mid - 1
+    //         }else if(arr[mid] < target){
+    //             left = mid + 1
+    //         }
+    //     }
+    //     return -1
+    // }
+
+    // console.log(findIndex_(arr1, 5))
+
+    // function A() {}
+    // let a = new A()
+
+    // function instanceof_(left, right) {
+    // //   let rightP = right.prototype
+    // //   left = left.__proto__
+    // //   while (true) {
+    // //     if (left === null) {
+    // //       return false
+    // //     }
+    // //     if (left === rightP) {
+    // //       return true
+    // //     }
+    // //     left = left.__proto__
+    // //   }
+    // // }
+
+    // //   function next(n) {
+    // //     setTimeout(() => {
+    // //       console.log("n:", n)
+    // //       if (n <= 0) return
+    // //       next(n-1)
+    // //     }, 3000)
+    // //   }
+    // //   next(3)
+
+
+    // // window.name = 'ByteDance';
+    // // class A {
+    // //   constructor() {
+    // //     this.name = 123;
+    // //     // this.getA = this.getA.bind(this)
+    // //   }
+    // //   getA() {
+    // //     console.log(this);
+    // //     return this.name + 1;
+    // //   }
+    // // }
+    // // A.prototype.callA = function(){
+    // //   console.log(this, 'jajaj')
+    // // }
+    // // let a = new A();
+    // // let funcA = a.getA;
+    // // let callA = a.callA
+    // // console.log(funcA());
+    // // console.log(callA())
+    // "use strict"
+
+    // class Cat {
+    //   constructor(name) {
+    //     this.name = name
+    //     this.jump = this.jump.bind(this)
+    //     this.drink = () => {
+    //       console.log('drink', this)
+    //     }
+    //   }
+    //   run() {
+    //     console.log('run', this)
+    //   }
+    //   jump() {
+    //     console.log('jump', this)
+    //   }
+    //   static go() {
+    //     console.log('go', this)
+    //   }
+    // }
+    // Cat.prototype.walk = () => {
+    //   console.log('walk', this)
+    // }
+
+
+
+
+    // let cat = new Cat('豆芽')
+    // let run = cat.run
+    // let jump = cat.jump
+    // let go = Cat.go
+    // let walk = cat.walk
+    // let drink = cat.drink
+
+    // run() // run undefined (严格模式下，this为undefined，可以举一个严格模式下function的例子)
+    // jump() // jump Cat {name: "豆芽", jump: ƒ}
+    // Cat.go() // go class Cat {}
+    // go() // go undefined
+    // cat.walk() // walk Window
+    // walk() // walk Window
+    // cat.drink() // drink Cat {name: "豆芽", jump: ƒ, drink: ƒ}
+    // drink() // drink Cat {name: "豆芽", jump: ƒ, drink: ƒ}
+
+  </script>
+  <input id="input">
+  <!-- <script>
+    function debounce(fn, timeout) {
+      let timer
+      return function () {
+        let that = this
+        if (timer) {
+          clearTimeout(timer)
+        }
+        timer = setTimeout(function () {
+          fn.call(that, ...arguments)
+        }, timeout)
+      }
+    }
+
+    function fn() {
+      console.log('触发了')
+    }
+
+    let dom = document.getElementById('input')
+    // dom.addEventListener('input', debounce(fn, 1000))
+
+
+    function jie_liu(fn, timeout) {
+      let start = +new Date()
+      return function () {
+        let now = +new Date()
+        if (now - start > timeout) {
+          start = now
+          fn.call(this, ...arguments)
+        }
+      }
+    }
+
+
+    document.addEventListener('click', jie_liu(fn, 2000))
+
+  </script> -->
+  <script>
+    function sum() {
+      let arg1 = [].slice.call(arguments)
+
+      function add_() {
+        arg1 = [...arg1, ...arguments]
+        return add_
+      }
+      add_.toValue = function () {
+       return arg1.reduce((acc, cur) => {
+          return acc + cur
+        })
+      }
+      return add_()
+    }
+
+    console.log(sum(1)(2)(3).toValue())
+
+  </script>
+</body>
+
+</html>

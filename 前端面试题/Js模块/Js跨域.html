@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js跨域</title>
+    <link rel="stylesheet" href="https://segmentfault.com/a/1190000011145364">
+</head>
+<body>
+    <script>
+       // JSONP
+       let script = document.createElement('script')
+       script.src = 'www.some.jd.com?callback=callbackFun'
+       document.head.append(script)
+       const  callbackFun = (res) => {
+           console.log(res)
+       }
+    </script>
+</body>
+</html>

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <script>
+  <!-- <script>
     // 手写深浅拷贝
     /**
      * // 编写一个深度克隆函数，满足以下需求（此题考察面较广，注意细节）
@@ -53,6 +53,42 @@
     }
 
     console.log("objA:", deepCopy(objA))
+
+  </script> -->
+
+  <script>
+    function deepCopy(obj) {
+      if (typeof obj !== 'object') return obj
+      let newObj = Array.isArray(obj) ? [] : {}
+      for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          if (obj[key] instanceof Date) {
+            newObj[key] = new Date(obj[key])
+          } else if (obj[key] instanceof RegExp) {
+            newObj[key] = new RegExp(obj[key])
+          } else if (typeof obj[key] === 'object' && obj[key].nodeType === 1) {
+            let node = document.getElementsByTagName(obj[key].nodeName)[0]
+            newObj[key] = node.cloneNode(true)
+          } else if (typeof obj[key] === 'object') {
+            newObj[key] = deepCopy(obj[key])
+          } else {
+            newObj[key] = obj[key]
+          }
+        }
+      }
+      return newObj
+    }
+
+    let obj = {
+      name: new Date().getTime(),
+      list: [2, 3, 5],
+      objj: {
+        a: document.getElementsByTagName('body')
+      }
+    }
+
+    let newObj = deepCopy(obj)
+    console.log("newObj:", newObj)
 
   </script>
 </body>
